@@ -1,0 +1,25 @@
+## GitHub Action to download and reupload Steam Link VR APK
+
+name: Fetch APK
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Install DepotDownloader
+      run: |
+        wget "https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-linux-arm64.zip"
+        unzip "DepotDownloader-linux-arm64.zip"
+        chmod +x "./DepotDownloader"
+    
+    - name: Run DepotDownloader
+      run: ./DepotDownloader -app 250820 -depot 250824 -filelist filelist.txt
