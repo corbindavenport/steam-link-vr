@@ -18,5 +18,20 @@ jobs:
         unzip "DepotDownloader-linux-x64.zip" -d "downloader"
         chmod +x "downloader/DepotDownloader"
     
-    - name: Run DepotDownloader
-      run: downloader/DepotDownloader -app 250820 -depot 250824 -filelist filelist.txt
+    - name: Get APK from stable branch
+      run: |
+        downloader/DepotDownloader -app 250820 -depot 250824 -filelist filelist.txt -dir "stable"
+        mv -f stable/drivers/vrlink/resources/android-steamlinkvr-release.apk ./steamlinkvr-release-stable.apk
+
+    - name: Get APK from beta branch
+      run: |
+        downloader/DepotDownloader -app 250820 -depot 250824 -filelist filelist.txt -dir "beta" -branch "beta"
+        mv -f beta/drivers/vrlink/resources/android-steamlinkvr-release.apk ./steamlinkvr-release-beta.apk
+
+    - name: Commit APKs
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "Updated Steam Link" || echo "No changes to commit"
+        git push
