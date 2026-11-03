@@ -2,9 +2,6 @@
 
 name: Fetch APK
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -18,8 +15,8 @@ jobs:
     - name: Install DepotDownloader
       run: |
         wget "https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-linux-arm64.zip"
-        unzip "DepotDownloader-linux-arm64.zip"
-        chmod +x "./DepotDownloader"
+        unzip "DepotDownloader-linux-arm64.zip" -d "downloader"
+        chmod +x "downloader/DepotDownloader"
     
     - name: Run DepotDownloader
       run: ./DepotDownloader -app 250820 -depot 250824 -filelist filelist.txt
