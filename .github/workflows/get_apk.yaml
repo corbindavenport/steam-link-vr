@@ -1,6 +1,6 @@
-## GitHub Action to download the latest SteamVR APKs and push them to the repository
+## GitHub Action to download the latest Steam Link APKs and push them to the repository
 
-name: Fetch APK
+name: Get APKs from Steam
 on:
   workflow_dispatch:
   schedule:
