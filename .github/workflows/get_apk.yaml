@@ -14,8 +14,8 @@ jobs:
     
     - name: Install DepotDownloader
       run: |
-        wget "https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-linux-arm64.zip"
-        unzip "DepotDownloader-linux-arm64.zip" -d "downloader"
+        wget "https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-linux-x64.zip"
+        unzip "DepotDownloader-linux-x64.zip" -d "downloader"
         chmod +x "downloader/DepotDownloader"
     
     - name: Run DepotDownloader
