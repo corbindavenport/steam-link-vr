@@ -1,8 +1,10 @@
 # steam-link-vr
 
-This is a mirror of the Steam Link APK for generic OpenXR Android headsets, since the [official download](https://media.steampowered.com/steamlink/android/latest/steamlink-android.apk) is only for the phone and tablet version.
+This is a mirror of the Steam Link APK for generic OpenXR Android headsets, since the [official download](https://media.steampowered.com/steamlink/android/latest/steamlink-android.apk) is only for the phone and tablet version. A GitHub Action fetches the latest version every 24 hours.
 
-**[Click here for the latest release!](https://github.com/corbindavenport/steam-link-vr/releases/latest)**
+**[Download APK from SteamVR Public Channel](https://github.com/corbindavenport/steam-link-vr/raw/refs/heads/main/steamlinkvr-release-stable.apk)**
+
+**[Download APK from SteamvR Beta Channel](https://github.com/corbindavenport/steam-link-vr/raw/refs/heads/main/steamlinkvr-release-beta.apk)**
 
 You can also get the APK from the source through one of the below methods.
 

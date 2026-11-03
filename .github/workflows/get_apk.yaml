@@ -1,8 +1,10 @@
-## GitHub Action to download and reupload Steam Link VR APK
+## GitHub Action to download the latest SteamVR APKs and push them to the repository
 
 name: Fetch APK
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
 
 permissions:
   contents: write
@@ -34,7 +36,7 @@ jobs:
     - name: Commit APKs
       run: |
         git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add steamlinkvr-release-stable.apk steamlinkvr-release-beta.apk
-          git diff --cached --quiet || git commit -m "Updated Steam Link APKs [skip ci]"
-          git push origin HEAD:${{ github.ref_name }}
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add steamlinkvr-release-stable.apk steamlinkvr-release-beta.apk
+        git diff --cached --quiet || git commit -m "Updated Steam Link APKs"
+        git push origin HEAD:${{ github.ref_name }}
