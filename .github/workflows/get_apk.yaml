@@ -19,4 +19,4 @@ jobs:
         chmod +x "downloader/DepotDownloader"
     
     - name: Run DepotDownloader
-      run: ./DepotDownloader -app 250820 -depot 250824 -filelist filelist.txt
+      run: downloader/DepotDownloader -app 250820 -depot 250824 -filelist filelist.txt
