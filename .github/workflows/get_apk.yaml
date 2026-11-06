@@ -38,14 +38,14 @@ jobs:
         downloader/DepotDownloader -app 250820 -depot 250824 -filelist filelist.txt -dir "beta" -branch "beta"
         mv -f beta/drivers/vrlink/resources/android-steamlinkvr-release.apk ./steamlinkvr-release-beta.apk
 
-    - name: Check for changed APKs
+    - name: Check for changes
       id: changes
       run: |
         if git diff --quiet steamlinkvr-release-stable.apk; then
           echo "stable_changed=false" >> $GITHUB_OUTPUT
         else
           echo "stable_changed=true" >> $GITHUB_OUTPUT
-        end
+        fi
         
         if git diff --quiet steamlinkvr-release-beta.apk; then
           echo "beta_changed=false" >> $GITHUB_OUTPUT
