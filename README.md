@@ -8,7 +8,15 @@ This is a mirror of the Steam Link APK for standalone Android VR headsets that s
 
 The APKs are copied from the SteamVR package on Steam using [DepotDownloader](https://github.com/steamre/depotdownloader), and checked every 24 hours with GitHub Actions.
 
-If you would like to get the APKs on your own, see the below instructions.
+## Subscribe to updates
+
+You can subscribe to the RSS/Atom releases feed to know when the APKs are updated:
+
+```
+https://github.com/corbindavenport/steam-link-vr/releases.atom
+```
+
+This feed can be used with [Feedly](https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fgithub.com%2Fcorbindavenport%2Fsteam-link-vr%2Freleases.atom), [Inoreader](https://www.inoreader.com/?add_feed=https://github.com/corbindavenport/steam-link-vr/releases.atom), [The Old Reader](https://theoldreader.com/feeds/subscribe?url=https://github.com/corbindavenport/steam-link-vr/releases.atom), [Feedbin](https://feedbin.me/?subscribe=https://github.com/corbindavenport/steam-link-vr/releases.atom), or any other reader tool. You can also subscribe to new releases with your GitHub account by clicking the Watch button at the top of the page, then selecting Custom > New releases.
 
 ### Get the APK from Steam on a PC
 

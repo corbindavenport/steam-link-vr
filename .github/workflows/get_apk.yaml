@@ -68,6 +68,7 @@ jobs:
         git tag $TAG
         git push origin $TAG
         gh release create "$TAG" steamlinkvr-release-stable.apk \
+          --latest
           --title "Steam Link $TAG" \
           --notes "Automated release for updated stable Steam Link APK"
 
