@@ -18,9 +18,9 @@ https://github.com/corbindavenport/steam-link-vr/releases.atom
 
 This feed can be used with [Feedly](https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fgithub.com%2Fcorbindavenport%2Fsteam-link-vr%2Freleases.atom), [Inoreader](https://www.inoreader.com/?add_feed=https://github.com/corbindavenport/steam-link-vr/releases.atom), [The Old Reader](https://theoldreader.com/feeds/subscribe?url=https://github.com/corbindavenport/steam-link-vr/releases.atom), [Feedbin](https://feedbin.me/?subscribe=https://github.com/corbindavenport/steam-link-vr/releases.atom), or any other reader tool. You can also subscribe to new releases with your GitHub account by clicking the Watch button at the top of the page, then selecting Custom > New releases.
 
-### Get the APK from Steam on a PC
+## Get the APKs from Steam
 
-This is the official method for obtaining the APKs.
+If you want to retrieve the APKs on your own, the official method is to use Steam on a PC:
 
 1. Install [SteamVR](https://store.steampowered.com/app/250820/SteamVR/) in Steam, if you haven't already.
 2. Right-click SteamVR in Steam's games list and Select Properties.
@@ -28,9 +28,7 @@ This is the official method for obtaining the APKs.
 
 If you want the APK from the beta channel of SteamVR, switch to it from the "Game Versions & Betas" tab of the Properties window.
 
-### Get the APK with DepotDownloader
-
-If you can't install Steam or SteamVR, like on a Mac, you can use [DepotDownloader](https://github.com/steamre/depotdownloader). After it's installed, open a Terminal and switch to where you want the downloaded files, like your Desktop folder:
+It's also possible to use [DepotDownloader](https://github.com/steamre/depotdownloader) instead of Steam. After DepotDownloader is installed, open a Terminal and switch to where you want the downloaded files, like your Desktop folder:
 
 ```shell
 cd ~/Desktop
