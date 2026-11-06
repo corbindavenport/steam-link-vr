@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   fetch:
+    name: Get APKs
     runs-on: ubuntu-latest
     
     steps:
