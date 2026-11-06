@@ -1,4 +1,4 @@
-## GitHub Action to download the latest Steam Link APKs and push them to the repository
+## GitHub Action to download the latest Steam Link APKs, push them to the repository, and update them if needed
 
 name: Get APKs from Steam
 on:
@@ -16,11 +16,16 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+
+    - name: Set up Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
     
     - name: Install DepotDownloader
       run: |
-        wget "https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-linux-x64.zip"
-        unzip "DepotDownloader-linux-x64.zip" -d "downloader"
+        curl -L -o "download.zip" "https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-linux-x64.zip"
+        unzip "download.zip" -d "downloader"
         chmod +x "downloader/DepotDownloader"
     
     - name: Get APK from stable branch
@@ -33,10 +38,48 @@ jobs:
         downloader/DepotDownloader -app 250820 -depot 250824 -filelist filelist.txt -dir "beta" -branch "beta"
         mv -f beta/drivers/vrlink/resources/android-steamlinkvr-release.apk ./steamlinkvr-release-beta.apk
 
+    - name: Check for changed APKs
+      id: changes
+      run: |
+        if git diff --quiet steamlinkvr-release-stable.apk; then
+          echo "stable_changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "stable_changed=true" >> $GITHUB_OUTPUT
+        end
+        
+        if git diff --quiet steamlinkvr-release-beta.apk; then
+          echo "beta_changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "beta_changed=true" >> $GITHUB_OUTPUT
+        fi
+
     - name: Commit APKs
       run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add steamlinkvr-release-stable.apk steamlinkvr-release-beta.apk
-        git diff --cached --quiet || git commit -m "Updated Steam Link APKs"
+        git diff --cached --quiet || git commit -m "Updated APKs"
         git push origin HEAD:${{ github.ref_name }}
+
+    - name: Create release for stable APK
+      if: steps.changes.outputs.stable_changed == 'true'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        TAG="stable-$(date +'%Y-%m-%d')"
+        git tag $TAG
+        git push origin $TAG
+        gh release create "$TAG" steamlinkvr-release-stable.apk \
+          --title "Steam Link $TAG" \
+          --notes "Automated release for updated stable Steam Link APK"
+
+    - name: Create release for beta APK
+      if: steps.changes.outputs.beta_changed == 'true'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        TAG="beta-$(date +'%Y-%m-%d')"
+        git tag $TAG
+        git push origin $TAG
+        gh release create "$TAG" steamlinkvr-release-beta.apk \
+          --prerelease \
+          --title "Steam Link $TAG" \
+          --notes "Automated release for updated beta Steam Link APK"
